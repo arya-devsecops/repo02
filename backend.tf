@@ -1,7 +1,3 @@
-provider "azurerm" {
-  features {}
-}
-
 terraform {
   backend "azurerm" {
     resource_group_name   = "group_az"
