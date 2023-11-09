@@ -40,19 +40,25 @@ options {
         stage('Terraform Plan') {
             steps {
                 script {
+                    // terraform plan output saved in plan.output file
                     sh 'terraform plan -out=plan.out'
                 }
             }
         }
-           stage('Terraform Apply') {
-             steps { 
-                 timeout(time: 01, unit: "MINUTES") {
-                        input message: 'Do you want to approve the deployment for create ?' ,ok: 'yes'
-                        }
-                 script {
-                     sh 'terraform apply --auto-approve'
-                 }
-             }
+           stage('Conditional Terraform Apply') {
+        when
+            expression {
+                // only apply if the plan was succesful
+                  return currentBuild.resultIsBetterOrEqualTo('SUCCESS')
+            }
+    }
+    steps('Terraform Apply') {
+        script {
+            // Run Terraform apply using the saved plan file
+            sh 'terraform apply "plan.out" --auto-approve'
+        }
+    }
+
          }
          stage('terraform destroy') {
              steps {
@@ -62,4 +68,3 @@ options {
                  }
              }
         }
-    }
