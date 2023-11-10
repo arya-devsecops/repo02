@@ -45,14 +45,7 @@ options {
                 }
             }
         }
-     stage('Terraform Plan') {
-            steps {
-                script {
-                    sh 'terraform plan -out=plan.out'
-                }
-            }
-        }
-      stage('Conditional Terraform Apply') {
+   age('Conditional Terraform Apply') {
     when {
         expression {
             // Only apply if the plan was successful
