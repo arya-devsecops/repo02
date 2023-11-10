@@ -41,7 +41,7 @@ options {
             steps {
                 script {
                     // terraform plan output saved in plan.output file
-                    sh 'terraform plan -out=plan.out'
+                        sh 'terraform plan -out=plan.out'
                 }
             }
         }
@@ -56,13 +56,13 @@ options {
     when {
         expression {
             // Only apply if the plan was successful
-            return currentBuild.resultIsBetterOrEqualTo('SUCCESS')
+                return currentBuild.resultIsBetterOrEqualTo('SUCCESS')
         }
     }
-        steps('Terraform Apply') {
+        steps {
             script {
             // Run Terraform apply using the saved plan file
-            sh 'terraform apply "plan.out"'
+                    sh 'terraform apply "plan.out"'
                 }
             }
         }
