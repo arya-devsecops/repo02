@@ -45,8 +45,8 @@ options {
                 }
             }
         }
-   age('Conditional Terraform Apply') {
-    when {
+       stage('Conditional Terraform Apply') {
+     when {
         expression {
             // Only apply if the plan was successful
                 return currentBuild.resultIsBetterOrEqualTo('SUCCESS')
