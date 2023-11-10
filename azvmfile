@@ -59,12 +59,12 @@ options {
             return currentBuild.resultIsBetterOrEqualTo('SUCCESS')
         }
     }
-    steps('Terraform Apply') {
-        script {
+        steps('Terraform Apply') {
+            script {
             // Run Terraform apply using the saved plan file
             sh 'terraform apply "plan.out"'
+                }
             }
         }
     }
-}
 }
