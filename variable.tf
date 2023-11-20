@@ -94,7 +94,7 @@ variable "admin_username" {
   description = " The admin username of the VM that will be deployed."
   default     = "adminuser"
 }
-variable "vm_admin_password" {
+variable "admin_password" {
   type        = string
   default     = "P@$$w0rd1234!"
   description = "The Password which should be used for the local-administrator on this Virtual Machine"
