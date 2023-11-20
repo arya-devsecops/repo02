@@ -38,6 +38,7 @@ resource "azurerm_linux_virtual_machine" "example_vm" {
   location              = var.locations
   size                  = var.sizes
   admin_username        = var.admin_username
+  admin_password        = var.admin_password
   network_interface_ids = [azurerm_network_interface.network_interface.id]
 
   source_image_reference {
@@ -46,12 +47,6 @@ resource "azurerm_linux_virtual_machine" "example_vm" {
     sku       = var.sku
     version   = var.versions
   }
-   admin_ssh_key {
-     username = var.admin_username
-     #public_key = var.public_key
-     #public_key = file("~/.ssh/id_rsa.pub")
-     public_key = file(var.public_key)
-   }
 
   os_disk {
     #caching = "ReadWrite"
