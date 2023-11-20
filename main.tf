@@ -46,12 +46,12 @@ resource "azurerm_linux_virtual_machine" "example_vm" {
     sku       = var.sku
     version   = var.versions
   }
-  # admin_ssh_key {
-  #   username = var.admin_username
-  #   #public_key = var.public_key
-  #   #public_key = file("~/.ssh/id_rsa.pub")
-  #   public_key = file(var.public_key)
-  # }
+   admin_ssh_key {
+     username = var.admin_username
+     #public_key = var.public_key
+     #public_key = file("~/.ssh/id_rsa.pub")
+     public_key = file(var.public_key)
+   }
 
   os_disk {
     #caching = "ReadWrite"
